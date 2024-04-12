@@ -1,3 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+Validate the output of your solution with this script.
+
+Expected folder structure:
+- contest-xx
+  |- prob-yy
+     |- prob-yy.pdf
+     |- solve.cpp
+     |- samples
+        |- 1.in
+        |- 1.ans
+        |- ...
+
+Usage:
+Navigate to the 'prob-yy' directory and run:
+$ python ../validator.py
+"""
+
 import os
 
 def validate(output_file, answer_file):

@@ -1,13 +1,25 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+Automate the setup of directories for coding contest problems.
+
+Usage:
+Run the script in the directory 'contest-xx' containing the problem files prefixed with 'prob-':
+$ python ../setup.py
+"""
+
 import os
+import shutil
 
 problems = [f for f in os.listdir('.') if f.startswith('prob-')]
 
 for problem in problems:
-    dirname = problem.replace('prob-', '').replace('.pdf', '')
-    os.system(f"mkdir -p {dirname}")
-    os.system(f"mv {problem} {dirname}/{problem}")
-    os.system(f"cp ../templates/solve.cpp {dirname}/solve.cpp")
-    os.system(f"mkdir -p {dirname}/samples")
+    dirname = problem.replace('.pdf', '')
+    os.makedirs(dirname, exist_ok=True)
+    shutil.move(problem, f"{dirname}/{problem}")
+    shutil.copy('../templates/solve.cpp', f"{dirname}/solve.cpp")
+    os.makedirs(f"{dirname}/samples", exist_ok=True)
 
-os.system(f"ln -sf ../templates/Makefile ./Makefile")
-os.system(f"ln -sf ../templates/validator.py ./validator.py")
+os.symlink('../templates/Makefile', 'Makefile')
+os.symlink('../templates/validator.py', 'validator.py')
