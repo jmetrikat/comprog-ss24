@@ -5,8 +5,6 @@
 #define endl '\n'
 
 using namespace std;
-using Graph = vector<vector<int>>;
-using ll = long long;
 
 int main() {
     ios::sync_with_stdio(false);
