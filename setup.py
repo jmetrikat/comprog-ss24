@@ -4,6 +4,15 @@
 """
 Automate the setup of directories for coding contest problems.
 
+Expected folder structure:
+- comprog-ss24
+    |- contest-xx
+        |- prob-yy.pdf
+        |- prob-yy.pdf
+        |- …
+    |- contest-xx
+    |- …
+
 Usage:
 Run the script in the directory 'contest-xx' containing the problem files prefixed with 'prob-':
 $ python ../setup.py
