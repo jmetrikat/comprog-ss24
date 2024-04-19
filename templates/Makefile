@@ -1,6 +1,6 @@
-CC = gcc-13
-CFLAGS += -fcolor-diagnostics -fansi-escape-codes -g -Og -Wall -pthread -pedantic
-SANITIZER = -fsanitize=address -fsanitize=undefined -fsanitize=leak
+CC = g++-13
+CFLAGS += -g -Og -Wall -pthread -pedantic -fdiagnostics-color=always
+# SANITIZER = -fsanitize=address  -fsanitize=undefined -fsanitize=leak
 
 SRC = $(shell find ./* -name '*.cpp' -print)
 OBJ = $(shell find ./* -name '*.o' -print)
@@ -9,9 +9,9 @@ TRG = $(SRC:%.cpp=%)
 
 all: $(TRG)
 
-%: %.c
-	@$(CC) -c $< $(CFLAGS) -o $@.o $(SANITIZER)
-	@$(CC) $@.o $(CFLAGS) -o $@ $(SANITIZER)
+%: %.cpp
+	@$(CC) -c $< $(CFLAGS) $(SANITIZER) -o $@.o
+	@$(CC) $@.o $(CFLAGS) $(SANITIZER) -o $@
 
 clean:
 	@rm -f $(TRG)
