@@ -11,7 +11,12 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    // content
+    int testcases;
+    cin >> testcases;
+
+    while (testcases--) {
+        // content
+    }
 
     return 0;
 }
