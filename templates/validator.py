@@ -19,7 +19,7 @@ Navigate to the 'prob-yy' directory and run:
 $ python ../validator.py
 """
 
-import os
+import os, re , subprocess
 
 def validate(output_file, answer_file):
     with open(output_file, "r") as output, open(answer_file, "r") as answer:
@@ -39,7 +39,12 @@ def validate(output_file, answer_file):
 test_files = [f for f in os.listdir("./samples") if f.endswith(".in")]
 test_files.sort()
 curr_dir = os.getcwd()
-os.system(f"cd ..; make {curr_dir}/solve; cd {curr_dir}")
+status = os.system(f"cd ..; make {curr_dir}/solve")
+os.chdir(curr_dir)
+
+if status != 0:
+    print("Compilation failed")
+    exit(1)
 
 for test_file in test_files:
     base_name = test_file[:-3]
@@ -47,12 +52,14 @@ for test_file in test_files:
     answer_file = "./samples/" + base_name + ".ans"
 
     os.system("touch " + output_file)
-    os.system(f"./solve < ./samples/{test_file} > {output_file}")
+    result = subprocess.run(f"time ./solve < ./samples/{test_file} > {output_file}", shell=True, capture_output=True, text=True)
+    output = result.stderr
+    match = re.search(r"real\s+([\d\.]+)m([\d\.]+)s", output)
 
     if validate(output_file, answer_file):
-        print(f"{test_file}: PASS")
+        print(f"{test_file}: PASS {match.group(2)}s")
     else:
-        print(f"{test_file}: FAIL")
+        print(f"{test_file}: FAIL {match.group(2)}s")
         print(f"Expected:")
         with open(answer_file, "r") as f:
             print(f.read())
