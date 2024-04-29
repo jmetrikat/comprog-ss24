@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 
-#define rep(a, b) for (int a = 0; a < (b); ++a)
+#define rep(a, b) for (ll a = 0; a < (b); ++a)
 #define all(a) (a).begin(), (a).end()
 #define endl '\n'
+#define ll long long
 
 using namespace std;
 
@@ -11,13 +12,13 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    int testcases;
+    ll testcases;
     cin >> testcases;
 
     while (testcases--) {
-        int numberOfBlocks;
+        ll numberOfBlocks;
         cin >> numberOfBlocks;
-        vector<int> characters(numberOfBlocks, 0);
+        vector<ll> characters(numberOfBlocks, 0);
 
         rep(i, numberOfBlocks) {
             char c;
@@ -33,7 +34,7 @@ int main() {
             cout << "YES\n0" << endl;
         } else {
             // switch all blocks to white
-            vector<int> usedSpells;
+            vector<ll> usedSpells;
             rep(i, numberOfBlocks - 1) {
                 if (characters[i] == 0) {
                     characters[i] = 1;
@@ -53,12 +54,13 @@ int main() {
                 // check if all blocks can be switched to black
                 if ((characters.size() - 1) % 2 == 0) {
                     // if length without last block is even, we can switch all to black
-                    for (int i = 0; i < characters.size() - 1; i += 2) {
+                    for (ll i = 0; i < characters.size() - 1; i += 2) {
                         characters[i] = 0;
                         characters[i + 1] = 1 - characters[i + 1];
                         usedSpells.push_back(i + 1);
                     }
-                    cout << "YES\n" << usedSpells.size() << endl;
+                    cout << "YES\n"
+                         << usedSpells.size() << endl;
                     for (auto& spell : usedSpells) {
                         cout << spell << " ";
                     }

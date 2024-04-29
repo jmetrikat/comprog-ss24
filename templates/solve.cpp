@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 
-#define rep(a, b) for (int a = 0; a < (b); ++a)
+#define rep(a, b) for (ll a = 0; a < (b); ++a)
 #define all(a) (a).begin(), (a).end()
 #define endl '\n'
+#define ll long long
 
 using namespace std;
 
@@ -11,7 +12,7 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    int testcases;
+    ll testcases;
     cin >> testcases;
 
     while (testcases--) {

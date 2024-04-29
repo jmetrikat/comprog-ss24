@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 
-#define rep(a, b) for (int a = 0; a < (b); ++a)
+#define rep(a, b) for (ll a = 0; a < (b); ++a)
 #define all(a) (a).begin(), (a).end()
 #define endl '\n'
+#define ll long long
 
 using namespace std;
 
@@ -14,11 +15,11 @@ int main() {
     long long numberOfProblems, difficulty;
     cin >> numberOfProblems >> difficulty;
 
-    vector<int> problems(numberOfProblems, 0);
+    vector<ll> problems(numberOfProblems, 0);
     for (auto& e : problems) cin >> e;
 
     // sort in reverse order
-    sort(all(problems), greater<int>());
+    sort(all(problems), greater<ll>());
 
     // expand subset as long as the average is greater than difficulty
     long long additional = 0;

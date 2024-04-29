@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#define rep(a, b) for (int a = 0; a < (b); ++a)
+#define rep(a, b) for (ll a = 0; a < (b); ++a)
 #define all(a) (a).begin(), (a).end()
 
 using namespace std;
@@ -10,9 +10,9 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    int numberOfKnights, answer;
+    ll numberOfKnights, answer;
     cin >> numberOfKnights;
-    vector<int> knights;
+    vector<ll> knights;
 
     // check order of first two knights
     cout << "? 1 2" << endl;
@@ -20,8 +20,8 @@ int main() {
     answer == 0 ? knights = {2, 1} : knights = {1, 2};
 
     // subsequently check order of knights through binary search approach
-    for (int i = 3; i <= numberOfKnights; i++) {
-        int left = 0, right = knights.size() - 1;
+    for (ll i = 3; i <= numberOfKnights; i++) {
+        ll left = 0, right = knights.size() - 1;
 
         // match against worst knight
         cout << "? " << knights[left] << " " << i << endl;
@@ -43,7 +43,7 @@ int main() {
 
         // match against middle knights and adjust area of search accordingly
         while (right - left > 1) {
-            int mid = (left + right) / 2;
+            ll mid = (left + right) / 2;
             cout << "? " << knights[mid] << " " << i << endl;
             cin >> answer;
 
@@ -60,7 +60,7 @@ int main() {
 
     // print result
     cout << "! ";
-    for (int i = 0; i < numberOfKnights; i++) {
+    for (ll i = 0; i < numberOfKnights; i++) {
         cout << knights[i] << " ";
     }
     cout << endl;

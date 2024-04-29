@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 
-#define rep(a, b) for (int a = 0; a < (b); ++a)
+#define rep(a, b) for (ll a = 0; a < (b); ++a)
 #define all(a) (a).begin(), (a).end()
 #define endl '\n'
+#define ll long long
 
 using namespace std;
 
@@ -22,7 +23,7 @@ int main() {
     perform_operation("? insert 2");
     perform_operation("? remove");
 
-    int answer;
+    ll answer;
     cin >> answer;
 
     if (answer == 2) {

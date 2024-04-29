@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 
-#define rep(a, b) for (int a = 0; a < (b); ++a)
+#define rep(a, b) for (ll a = 0; a < (b); ++a)
 #define all(a) (a).begin(), (a).end()
 #define endl '\n'
+#define ll long long
 
 using namespace std;
 
@@ -11,7 +12,7 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    int testcases;
+    ll testcases;
     cin >> testcases;
 
     while (testcases--) {
@@ -19,8 +20,8 @@ int main() {
         cin >> line;
 
         // transform line into heights
-        vector<int> heights(line.length() + 1, 0);
-        for (int i = 1; i <= line.size(); i++) {
+        vector<ll> heights(line.length() + 1, 0);
+        for (ll i = 1; i <= line.size(); i++) {
             if (line[i - 1] == '/') {
                 heights[i] = heights[i - 1] + 1;
             } else if (line[i - 1] == '\\') {
@@ -31,25 +32,25 @@ int main() {
         }
 
         // populate left vector with max heights
-        vector<int> trapped_from_left(heights.size(), 0);
-        int max_height = heights[0];
+        vector<ll> trapped_from_left(heights.size(), 0);
+        ll max_height = heights[0];
 
-        for (int i = 1; i < heights.size() - 1; i++) {
+        for (ll i = 1; i < heights.size() - 1; i++) {
             max_height = max(max_height, heights[i]);
             trapped_from_left[i] = max_height - heights[i];
         }
 
         // populate right vector with max heights
-        vector<int> trapped_from_(heights.size(), 0);
+        vector<ll> trapped_from_(heights.size(), 0);
         max_height = heights[heights.size() - 1];
 
-        for (int i = heights.size() - 2; i > 0; i--) {
+        for (ll i = heights.size() - 2; i > 0; i--) {
             max_height = max(max_height, heights[i]);
             trapped_from_[i] = max_height - heights[i];
         }
 
-        int trapped = 0;
-        for (int i = 0; i < heights.size(); i++) {
+        ll trapped = 0;
+        for (ll i = 0; i < heights.size(); i++) {
             trapped += min(trapped_from_left[i], trapped_from_[i]);
         }
 
