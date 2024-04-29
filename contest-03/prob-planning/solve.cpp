@@ -11,12 +11,36 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    int testcases;
-    cin >> testcases;
+    int numberOfContests;
+    cin >> numberOfContests;
 
-    while (testcases--) {
-        // content
+    vector<long long> contests(numberOfContests), increasing(numberOfContests, 1), decreasing(numberOfContests, 1);
+    for (auto &contest : contests) cin >> contest;
+
+    // compute the longest increasing subsequence
+    for (int i = 1; i < numberOfContests; i++) {
+        for (int j = 0; j < i; j++) {
+            if (contests[j] < contests[i]) {
+                increasing[i] = max(increasing[i], increasing[j] + 1);
+            }
+        }
     }
 
+    // compute the longest decreasing subsequence
+    for (int i = numberOfContests - 2; i >= 0; i--) {
+        for (int j = numberOfContests - 1; j > i; j--) {
+            if (contests[j] < contests[i]) {
+                decreasing[i] = max(decreasing[i], decreasing[j] + 1);
+            }
+        }
+    }
+
+    // find maximum over both subsequences while having a contest as top difficulty
+    long long result = 0;
+    for (int i = 0; i < numberOfContests; i++) {
+        result = max(result, increasing[i] + decreasing[i] - 1);
+    }
+
+    cout << result << endl;
     return 0;
 }
