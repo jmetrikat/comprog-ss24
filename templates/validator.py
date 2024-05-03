@@ -19,7 +19,7 @@ Navigate to the 'prob-yy' directory and run:
 $ python ../validator.py
 """
 
-import os, re , subprocess
+import os, re , subprocess, argparse
 
 def validate(output_file, answer_file):
     with open(output_file, "r") as output, open(answer_file, "r") as answer:
@@ -36,13 +36,15 @@ def validate(output_file, answer_file):
     return True
 
 
-test_files = [f for f in os.listdir("./samples") if f.endswith(".in")]
-test_files.sort()
-curr_dir = os.getcwd()
-status = os.system(f"cd ..; make {curr_dir}/solve")
-os.chdir(curr_dir)
+parser = argparse.ArgumentParser(description="Validate the output of your solution with this script.")
+parser.add_argument('source_file', nargs='?', default='solve.cpp', help='The source file to compile and execute')
+args = parser.parse_args()
+source_file_base = os.path.splitext(os.path.basename(args.source_file))[0]
 
-if status != 0:
+test_files = sorted([f for f in os.listdir("./samples") if f.endswith(".in")])
+make_status = os.system(f"cd ..; make {os.getcwd()}/{source_file_base}")
+
+if make_status != 0:
     print("Compilation failed")
     exit(1)
 
@@ -52,7 +54,7 @@ for test_file in test_files:
     answer_file = "./samples/" + base_name + ".ans"
 
     os.system("touch " + output_file)
-    result = subprocess.run(f"time ./solve < ./samples/{test_file} > {output_file}", shell=True, capture_output=True, text=True)
+    result = subprocess.run(f"time ./{source_file_base} < ./samples/{test_file} > {output_file}", shell=True, capture_output=True, text=True)
     output = result.stderr
     match = re.search(r"real\s+([\d\.]+)m([\d\.]+)s", output)
 
