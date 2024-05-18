@@ -24,7 +24,10 @@ int main() {
     // precompute the number of ways to arrange i planks into j sections
     for (ll i = 1; i <= 2000; i++) {
         for (ll j = 1; j <= i; j++) {
-            // either add the plan as new section and rearrange or add the plank to an existing section
+            // (i) either add the plan as new section and rearrange or (ii) add the plank to an existing section
+            // for first case there are i + 1 points to place the new section, aka the new largest plank
+            // but, at j points it wouldn't create a new section as the large plank would just extent an already existing section
+            // therfore i - j + 1 points are valid to place the new section
             dp[i][j] = ((i - j + 1) * dp[i - 1][j - 1] + (j * dp[i - 1][j])) % MOD;
         }
     }
