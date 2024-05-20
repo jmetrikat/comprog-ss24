@@ -1,4 +1,4 @@
-CC = g++-13
+CC = g++-14
 CFLAGS += -g -Og -Wall -pthread -pedantic -fdiagnostics-color=always
 # SANITIZER = -fsanitize=address  -fsanitize=undefined -fsanitize=leak
 
