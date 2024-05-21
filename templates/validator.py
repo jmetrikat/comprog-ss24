@@ -48,6 +48,8 @@ if make_status != 0:
     print("Compilation failed")
     exit(1)
 
+tests_valid = True
+
 for test_file in test_files:
     base_name = test_file[:-3]
     output_file = "./samples/" + base_name + ".out"
@@ -61,12 +63,19 @@ for test_file in test_files:
     if validate(output_file, answer_file):
         print(f"{test_file}: PASS {match.group(2)}s")
     else:
+        tests_valid = False
         print(f"{test_file}: FAIL {match.group(2)}s")
-        print(f"Expected:")
+        print(f"Input:")
+        with open(f"./samples/{test_file}", "r") as f:
+            print(f.read())
+        print(f"Expected Output:")
         with open(answer_file, "r") as f:
             print(f.read())
-        print(f"Found:")
+        print(f"Actual Output:")
         with open(output_file, "r") as f:
             print(f.read())
 
     os.remove(output_file)
+
+if not tests_valid:
+    exit(1)
