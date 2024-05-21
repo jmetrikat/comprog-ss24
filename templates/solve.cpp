@@ -4,6 +4,7 @@
 #define all(a) (a).begin(), (a).end()
 #define endl '\n'
 #define ll long long
+#define Graph vector<vector<ll>>
 
 using namespace std;
 
