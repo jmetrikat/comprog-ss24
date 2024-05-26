@@ -13,12 +13,13 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    ll testcases;
-    cin >> testcases;
+    ll x, y, r;
+    cin >> x >> y >> r;
 
-    while (testcases--) {
-        // content
-    }
+    cout << x - r << " " << y + r << endl;
+    cout << x + r << " " << y + r << endl;
+    cout << x + r << " " << y - r << endl;
+    cout << x - r << " " << y - r << endl;
 
     return 0;
 }
