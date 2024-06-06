@@ -11,4 +11,4 @@ Exercises in the subject "(Advanced) Competitive Programming" at Hasso Plattner 
 3. [Dynamic Programming](./contest-03/)
 4. [Strings](./contest-04/)
 5. [Graphs](./contest-05/)
-6. 
+6. [Minimum Spanning Trees](./contest-06/)
