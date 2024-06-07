@@ -51,7 +51,6 @@ ll findLongestPath(ll n, const WeightedGraph& graph) {
         }
     }
 
-
     // extract longest path
     ll maxDistance = LLONG_MIN;
     for (ll i = 1; i <= n; ++i) {

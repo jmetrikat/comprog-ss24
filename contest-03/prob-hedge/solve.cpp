@@ -6,6 +6,7 @@
 #define ll long long
 
 #define Graph vector<vector<ll>>
+#define WeightedGraph vector<vector<pair<ll, ll>>>
 #define MOD 998244353
 
 using namespace std;

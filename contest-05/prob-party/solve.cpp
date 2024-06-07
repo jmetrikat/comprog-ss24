@@ -5,12 +5,13 @@
 #define endl '\n'
 #define ll long long
 #define Graph vector<vector<ll>>
+#define WeightedGraph vector<vector<pair<ll, ll>>>
 
 using namespace std;
 
 void dfs(ll node, Graph &boss, vector<ll> &funFactors, vector<vector<ll>> &dp) {
-    dp[node][0] = 0; // fun factor if node is not invited
-    dp[node][1] = funFactors[node]; // fun factor if node is invited
+    dp[node][0] = 0;                 // fun factor if node is not invited
+    dp[node][1] = funFactors[node];  // fun factor if node is invited
 
     // maximize the fun factor by computing best score for inviting/not inviting each child
     for (ll child : boss[node]) {

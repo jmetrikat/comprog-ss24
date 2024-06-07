@@ -4,6 +4,7 @@
 #define all(a) (a).begin(), (a).end()
 #define ll long long
 #define Graph vector<vector<ll>>
+#define WeightedGraph vector<vector<pair<ll, ll>>>
 
 using namespace std;
 

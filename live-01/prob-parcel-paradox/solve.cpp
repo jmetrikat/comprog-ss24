@@ -5,6 +5,7 @@
 #define endl '\n'
 #define ll long long
 #define Graph vector<vector<ll>>
+#define WeightedGraph vector<vector<pair<ll, ll>>>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ pair<ll, ll> bfs(vector<vector<ll>> adj, ll start) {
     ll n = adj.size();
     vector<ll> dist(n, -1);
     queue<ll> q;
-    
+
     q.push(start);
     dist[start] = 0;
 
