@@ -65,11 +65,11 @@ int main() {
     rep(i, n) edges.push_back({n, i, freezerCost[i]});
 
     // run kruskal's algorithm
-    sort(edges.begin(), edges.end());
+    sort(all(edges));
 
     vector<ll> parent(n + 1);
     vector<ll> rank(n + 1, 0);
-    iota(parent.begin(), parent.end(), 0);
+    iota(all(parent), 0);
 
     // calculate minimum cost to connect all nodes
     ll minCost = 0;
