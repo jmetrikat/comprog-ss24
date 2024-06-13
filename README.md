@@ -10,5 +10,6 @@ Exercises in the subject "(Advanced) Competitive Programming" at Hasso Plattner 
 2. [Greedy](./contest-02/)
 3. [Dynamic Programming](./contest-03/)
 4. [Strings](./contest-04/)
-5. [Graphs](./contest-05/)
-6. [Minimum Spanning Trees](./contest-06/)
+5. [Graphs: Fundamentals](./contest-05/)
+6. [Graphs: Minimum Spanning Trees](./contest-06/)
+7. [Graphs: SSSP and APSP](./contest-07/)
