@@ -73,7 +73,7 @@ int main() {
     }
 
     // read exchange rates (edges) between currencies (nodes)
-    vector<Edge> edges(n * n);
+    vector<Edge> edges;
     rep(i, n) {
         rep(j, n) {
             double logRate;
