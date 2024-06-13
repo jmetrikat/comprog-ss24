@@ -11,8 +11,8 @@ using namespace std;
 
 vector<long long> dijkstraMaxWeight(ll n, WeightedGraph& adj) {
     vector<ll> dist(n, LLONG_MAX);
-    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
     dist[0] = 0;
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
     pq.push({0, 0});
 
     // explore all edges, starting with cheapest node
