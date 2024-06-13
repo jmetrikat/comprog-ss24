@@ -55,7 +55,7 @@ int main() {
         rep(k, n) {
             rep(i, n) {
                 rep(j, n) {
-                        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
                 }
             }
         }
