@@ -9,7 +9,7 @@
 
 using namespace std;
 
-pair<ll, ll> bfs(vector<vector<ll>> adj, ll start) {
+pair<ll, ll> bfs(vector<vector<ll>> &adj, ll start) {
     ll n = adj.size();
     vector<ll> dist(n, -1);
     queue<ll> q;
