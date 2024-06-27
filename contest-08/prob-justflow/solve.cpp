@@ -36,7 +36,7 @@ bool bfs(ll s, ll t, vector<ll> &parent, vector<vector<ll>> &capacity, vector<ve
 }
 
 // max flow algorithm adding path flows to sum until no more augmenting paths can be found
-ll edmondsKarp(ll s, ll t, vector<vector<ll>> &capacity, vector<vector<ll>> &adj, ll n) {
+ll edmondsKarp(ll s, ll t, Graph &capacity, Graph &adj, ll n) {
     ll max_flow = 0;
     vector<ll> parent(n + 1);
 
