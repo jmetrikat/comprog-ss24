@@ -14,3 +14,4 @@ Exercises in the subject "(Advanced) Competitive Programming" at Hasso Plattner 
 6. [Graphs: Minimum Spanning Trees](./contest-06/)
 7. [Graphs: SSSP and APSP](./contest-07/)
 8. [Flows](./contest-08/)
+9. [Math](./contest-09/)
