@@ -14,11 +14,27 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    ll testcases;
-    cin >> testcases;
+    ll x;
+    cin >> x;
 
-    while (testcases--) {
-        // content
+    ll result, difference;
+    vector<ll> penta_powers;
+    unordered_map<ll, ll> penta_root;
+
+    // precompute powers of 5
+    rep(i, 4000) {
+        result = pow(i, 5);
+        penta_powers.push_back(result);
+        penta_root[result] = i;
+    }
+
+    // find the two numbers that sum to x
+    rep(i, 4000) {
+        difference = penta_powers[i] - x;
+        if (penta_root.find(abs(difference)) != penta_root.end()) {
+            cout << i << " " << (difference > 0 ? "" : "-") << penta_root[abs(difference)] << endl;
+            break;
+        }
     }
 
     return 0;
