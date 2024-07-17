@@ -6,6 +6,7 @@
 Exercises in the subject "(Advanced) Competitive Programming" at Hasso Plattner Institute.
 
 ## Table of Contents
+
 1. [Programming](./contest-01/)
 2. [Greedy](./contest-02/)
 3. [Dynamic Programming](./contest-03/)
@@ -15,3 +16,5 @@ Exercises in the subject "(Advanced) Competitive Programming" at Hasso Plattner 
 7. [Graphs: SSSP and APSP](./contest-07/)
 8. [Flows](./contest-08/)
 9. [Math](./contest-09/)
+10. [Geometry](./contest-10/)
+11. [Data Structures](./contest-11/)
