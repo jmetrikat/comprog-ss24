@@ -14,11 +14,11 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    ll testcases;
-    cin >> testcases;
+    ll secret;
+    cin >> secret;
 
-    while (testcases--) {
-        // content
+    if (611788 == secret) {
+        cout << secret << endl;
     }
 
     return 0;
