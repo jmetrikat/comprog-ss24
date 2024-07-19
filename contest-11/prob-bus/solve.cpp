@@ -14,11 +14,24 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    ll testcases;
-    cin >> testcases;
+    ll components, queries;
+    cin >> components >> queries;
+    vector<uint64_t> converter_sum(components + 1);
 
-    while (testcases--) {
-        // content
+    for (int i = 1; i <= components; ++i) {
+        string hexValue;
+        cin >> hexValue;
+        converter_sum[i] = converter_sum[i - 1] ^ stoull(hexValue, nullptr, 16);
+    }
+
+    ll first, second;
+    while (queries--) {
+        cin >> first >> second;
+        if (second >= first) {
+            cout << (converter_sum[first - 1] ^ converter_sum[second - 1]) << endl;
+        } else {
+            cout << ((converter_sum[first - 1] ^ converter_sum[second - 1]) ^ converter_sum[components]) << endl;
+        }
     }
 
     return 0;
