@@ -10,15 +10,27 @@
 using namespace std;
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.precision(10);
+    ll k;
+    cin >> k;
 
-    ll testcases;
-    cin >> testcases;
+    ll n = 2 * k;
+    ll m = 2 * k - 1;
 
-    while (testcases--) {
-        // content
+    vector<tuple<ll, ll, ll>> edges;
+
+    for (ll i = 1; i < 2 * k; ++i) {
+        ll u = i;
+        ll v = i + 1;
+        ll w = (i <= k / 2 || i >= 1.5 * k) ? 100 : 1;
+        edges.push_back({u, v, w});
+    }
+
+    cout << n << " " << m << endl;
+
+    for (const auto& edge : edges) {
+        ll u, v, w;
+        tie(u, v, w) = edge;
+        cout << u << " " << v << " " << w << endl;
     }
 
     return 0;
