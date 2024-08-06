@@ -9,83 +9,82 @@
 
 using namespace std;
 
-void f1(Graph& a, ll b, ll& c, vector<ll>& d, vector<ll>& e, vector<bool>& f, vector<ll>& g) {
-    f[b] = true;
-    g[c] = b;
-    d[b] = c;
-    for (auto h : a[b]) {
-        if (f[h]) continue;
-        f1(a, h, ++c, d, e, f, g);
+void dfs(Graph& G, ll start, ll& index, vector<ll>& from, vector<ll>& to, vector<bool>& visited, vector<ll>& preorder) {
+    visited[start] = true;
+    preorder[index] = start;
+    from[start] = index;
+    for (auto v : G[start]) {
+        if (visited[v]) continue;
+        dfs(G, v, ++index, from, to, visited, preorder);
     }
-    e[b] = c;
+    to[start] = index;
 }
 
-void f2(vector<vector<ll>>& i, vector<ll>& j, ll k, ll l, ll m, vector<ll>& n) {
-    if (l == m) {
-        i[k].push_back(j[n[l]]);
+void build(Graph& tree, vector<ll>& colors, ll v, ll tl, ll tr, vector<ll>& perm) {
+    if (tl == tr) {
+        tree[v].push_back(colors[perm[tl]]);
     } else {
-        ll o = l + (m - l) / 2;
-        f2(i, j, 2 * k, l, o, n);
-        f2(i, j, 2 * k + 1, o + 1, m, n);
-        merge(all(i[2 * k]), all(i[2 * k + 1]), back_inserter(i[k]));
+        ll tm = tl + (tr - tl) / 2;
+        build(tree, colors, 2 * v, tl, tm, perm);
+        build(tree, colors, 2 * v + 1, tm + 1, tr, perm);
+        merge(all(tree[2 * v]), all(tree[2 * v + 1]), back_inserter(tree[v]));
     }
 }
 
-ll f3(vector<vector<ll>>& p, ll q, ll r, ll s, ll t, ll u, ll v) {
-    if (t > u)
+ll query(Graph& tree, ll v, ll tl, ll tr, ll l, ll r, ll color) {
+    if (l > r)
         return 0;
-    else if (r == t && s == u) {
-        auto w = lower_bound(all(p[q]), v);
-        if (w == p[q].end()) return 0;
-        auto x = upper_bound(all(p[q]), v);
-        return distance(w, x);
+    else if (tl == l && tr == r) {
+        auto front = lower_bound(all(tree[v]), color);
+        if (front == tree[v].end()) return 0;
+        auto back = upper_bound(all(tree[v]), color);
+        return distance(front, back);
     } else {
-        ll y = r + (s - r) / 2;
-        return f3(p, 2 * q, r, y, t, min(y, u), v) + f3(p, 2 * q + 1, y + 1, s, max(y + 1, t), u, v);
+        ll tm = tl + (tr - tl) / 2;
+        return query(tree, 2 * v, tl, tm, l, min(tm, r), color) +
+               query(tree, 2 * v + 1, tm + 1, tr, max(tm + 1, l), r, color);
     }
 }
 
-int main() {
+int main(void) {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll z, aa;
-    cin >> z >> aa;
-    Graph ab(z);
-    for (ll ac = 0; ac < z - 1; ac++) {
-        ll ad, ae;
-        cin >> ad >> ae >> ws;
-        ad--;
-        ae--;
-        ab[ad].push_back(ae);
-        ab[ae].push_back(ad);
+    ll n, q;
+    cin >> n >> q;
+    Graph G(n);
+    rep(i, n - 1) {
+        ll a, b;
+        cin >> a >> b >> ws;
+        a--;
+        b--;
+        G[a].push_back(b);
+        G[b].push_back(a);
     }
 
-    vector<ll> af(z);
+    vector<ll> colors(n);
     cin >> hex;
-    for (ll ag = 0; ag < z; ag++) {
+    rep(i, n) {
         cin.ignore(3, '#');
-        cin >> af[ag] >> ws;
+        cin >> colors[i] >> ws;
     }
 
     cin >> dec;
-    vector<bool> ah(z, false);
-    vector<ll> ai(z);
-    vector<ll> aj(z);
-    vector<ll> ak(z);
+    vector<bool> visited(n, false);
+    vector<ll> from(n), to(n), preorder(n);
+    ll start_index = 0;
 
-    ll al = 0;
-    f1(ab, 0, al, ai, aj, ah, ak);
-    vector<vector<ll>> am(4 * z);
-    f2(am, af, 1, 0, z - 1, ak);
+    dfs(G, 0, start_index, from, to, visited, preorder);
+    vector<vector<ll>> tree(4 * n);
+    build(tree, colors, 1, 0, n - 1, preorder);
 
-    for (ll an = 0; an < aa; an++) {
-        ll ao, ap;
-        cin >> ao;
+    rep(i, q) {
+        ll p, color;
+        cin >> p;
         cin.ignore(3, '#');
-        cin >> hex >> ap >> dec;
-        ao--;
-        cout << f3(am, 1, 0, z - 1, ai[ao], aj[ao], ap) << "\n";
+        cin >> hex >> color >> dec;
+        p--;
+        cout << query(tree, 1, 0, n - 1, from[p], to[p], color) << "\n";
     }
 
     return 0;
