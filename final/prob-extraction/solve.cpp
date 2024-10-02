@@ -21,7 +21,6 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    bool foundZero = false;
     ll low = 1, high = 1, mid;
 
     while (query(high) != 0) {
