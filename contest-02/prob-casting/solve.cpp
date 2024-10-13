@@ -54,7 +54,7 @@ int main() {
                 // check if all blocks can be switched to black
                 if ((characters.size() - 1) % 2 == 0) {
                     // if length without last block is even, we can switch all to black
-                    for (ll i = 0; i < characters.size() - 1; i += 2) {
+                    for (ll i = 0; i < (ll)characters.size() - 1; i += 2) {
                         characters[i] = 0;
                         characters[i + 1] = 1 - characters[i + 1];
                         usedSpells.push_back(i + 1);

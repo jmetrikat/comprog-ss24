@@ -21,7 +21,7 @@ int main() {
 
         // transform line into heights
         vector<ll> heights(line.length() + 1, 0);
-        for (ll i = 1; i <= line.size(); i++) {
+        for (ll i = 1; i <= (ll)line.size(); i++) {
             if (line[i - 1] == '/') {
                 heights[i] = heights[i - 1] + 1;
             } else if (line[i - 1] == '\\') {
@@ -35,7 +35,7 @@ int main() {
         vector<ll> trapped_from_left(heights.size(), 0);
         ll max_height = heights[0];
 
-        for (ll i = 1; i < heights.size() - 1; i++) {
+        for (ll i = 1; i < (ll)heights.size() - 1; i++) {
             max_height = max(max_height, heights[i]);
             trapped_from_left[i] = max_height - heights[i];
         }
@@ -50,7 +50,7 @@ int main() {
         }
 
         ll trapped = 0;
-        for (ll i = 0; i < heights.size(); i++) {
+        for (ll i = 0; i < (ll)heights.size(); i++) {
             trapped += min(trapped_from_left[i], trapped_from_[i]);
         }
 
