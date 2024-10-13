@@ -2,6 +2,8 @@
 
 #define rep(a, b) for (ll a = 0; a < (b); ++a)
 #define all(a) (a).begin(), (a).end()
+#define endl '\n'
+#define ll long long
 
 using namespace std;
 
