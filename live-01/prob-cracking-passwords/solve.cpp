@@ -15,7 +15,7 @@ int main() {
     cin.tie(nullptr);
     cout.precision(10);
 
-    ll ms, passwordLength, previousTime;
+    ll ms, previousTime, passwordLength = 0;
     string password = "A", response = "";
 
     for (int i = 1; i <= 20; i++) {
